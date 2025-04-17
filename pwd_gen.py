@@ -1,4 +1,3 @@
-#!/Users/quoc-thongnguyen/conda/miniconda3/envs/py39/bin/python3
 import tkinter as tk
 import random
 # from faker import Faker

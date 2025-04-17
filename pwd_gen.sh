@@ -1,1 +1,1 @@
-python3 pwd_gen.py
+python pwd_gen.py

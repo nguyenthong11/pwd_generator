@@ -1,13 +1,23 @@
 import tkinter as tk
+from tkinter import messagebox
 import random
+import string
 # from faker import Faker
 
+def check_good_pw(pw: str) -> bool:
+    upper = any(char.isupper() for char in pw)
+    lower = any(char.islower() for char in pw)
+    number = any(char.isdigit() for char in pw)
+    special = any(char in string.punctuation for char in pw)
+    return upper and lower and number and special
 
 def generate_password(length: int, seed_seq) -> str:
     random.seed(seed_seq)
     # list_of_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_"
     list_of_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%&*()_"
-    selected_char = random.sample(list_of_chars, length)
+    selected_char = []
+    while not check_good_pw(selected_char):
+        selected_char = random.sample(list_of_chars, length)
     pass_str = "".join(selected_char)
     return pass_str
 
@@ -40,11 +50,8 @@ class GUI:
 
         # create widget for output values
         self.value = tk.StringVar()
-        self.output_pw = tk.Entry(self.passwd, text=self.value, bd=0, bg="systemButtonFace")
-
-        # self.value = tk.StringVar()
-        # self.output_pw = tk.Label(self.passwd, textvariable=self.value)
-
+        self.output_pw = tk.Entry(self.passwd, textvariable=self.value, bd=0, bg="systemButtonFace")
+       
         # pack the output frame widgets
         self.output_pw.pack(side='left')
 
@@ -59,27 +66,39 @@ class GUI:
         self.quit.pack(side='left')
 
         # pack all frames
-        self.string.pack()
-        self.length.pack()
-        self.passwd.pack()
-        self.button.pack()
-        
+        self.string.pack(pady=5)
+        self.length.pack(pady=5)
+        self.passwd.pack(pady=5)
+        self.button.pack(pady=10)
+
+        self.copied_label = tk.Label(self.passwd, text="", fg="green")
+        self.copied_label.pack(side='left', padx=10)   
+
+        self.main_window.bind('<Return>', lambda event: self.gen_pass()) 
         # start the main loop
         tk.mainloop()
+
 
     def gen_pass(self) -> None:
         get_string = self.str_entry.get()
         get_length = self.len_entry.get()
-        if (not get_length.isdecimal()) or (int(get_length) < 4):
-            get_length = 15
+        try:
+            length = int(get_length)
+            if length < 4:
+                raise ValueError
+        except ValueError:
+            messagebox.showwarning("Invalid input", "Password length must be a number at least 4. Using default length: 15.")
+            length = 15
         # Faker.seed(int.from_bytes(get_string.encode('utf-8'), 'little'))
-        # pwd = Faker().password(int(get_length))
-        pwd = generate_password(int(get_length), seed_seq=get_string) #comment this to get the faker algo
+        # pwd = Faker().password(length)
+        pwd = generate_password(length, seed_seq=get_string) #comment this to get the faker algo
         self.value.set(pwd)
 
     def clipper(self) -> None:
         self.main_window.clipboard_clear()
         self.main_window.clipboard_append(self.output_pw.get())
+        self.copied_label.config(text="Copied!")
+        self.main_window.after(2000, lambda: self.copied_label.config(text=""))  # Hide after 2s
 
 
 def main() -> None:

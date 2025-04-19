@@ -2,6 +2,8 @@ import streamlit as st
 import time
 from generator import generate_password
 
+
+st.set_page_config(page_title="Testing Password Generator", page_icon="🔐")
 st.title("🔐 Password Generator")
 
 seed = st.text_input("Enter seed string:")

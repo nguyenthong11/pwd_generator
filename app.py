@@ -15,19 +15,17 @@ if st.button("Generate Password"):
     st.success(f"Generated password: `{password}`")
 
     st.code(password, language="text")
-    # Copy button using HTML/JS
-    st.markdown(f"""
-    <button onclick="navigator.clipboard.writeText('{password}')" style="
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin-top: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    ">📋 Copy to Clipboard</button>
-    """, unsafe_allow_html=True)
+    # Copy button using custom JavaScript
+    copy_button = st.button("📋 Copy to Clipboard")
+
+    if copy_button:
+        st.markdown(f"""
+        <script>
+        navigator.clipboard.writeText("{password}");
+        const btn = window.parent.document.querySelector('button:has-text("📋 Copy to Clipboard")');
+        if (btn) {{
+            btn.innerText = "✅ Copied!";
+            setTimeout(() => {{ btn.innerText = "📋 Copy to Clipboard"; }}, 2000);
+        }}
+        </script>
+        """, unsafe_allow_html=True)

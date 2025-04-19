@@ -17,17 +17,17 @@ if st.button("Generate Password"):
     st.code(password, language="text")
     # Copy button using HTML/JS
     st.markdown(f"""
-    <button onclick="navigator.clipboard.writeText('{password}');
-                    fetch('/?copied=true')"
-            style="
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                font-size: 14px;
-                margin-top: 10px;
-                border-radius: 5px;
-                cursor: pointer;">
-        📋 Copy to Clipboard
-    </button>
+    <button onclick="navigator.clipboard.writeText('{password}')" style="
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    ">📋 Copy to Clipboard</button>
     """, unsafe_allow_html=True)

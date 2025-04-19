@@ -7,6 +7,10 @@ st.title("🔐 Password Generator")
 seed = st.text_input("Enter seed string:")
 length = st.number_input("Desired password length", min_value=4, value=15)
 
+# Initialize session state flag
+if "copied" not in st.session_state:
+    st.session_state["copied"] = False
+
 if st.button("Generate Password"):
     password = generate_password(length, seed)
     st.success(f"Generated password: `{password}`")

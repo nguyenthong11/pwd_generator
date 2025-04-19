@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 from generator import generate_password
 
 
@@ -16,16 +15,12 @@ if st.button("Generate Password"):
 
     st.code(password, language="text")
     # Copy button using custom JavaScript
-    copy_button = st.button("📋 Copy to Clipboard")
 
-    if copy_button:
-        st.markdown(f"""
-        <script>
-        navigator.clipboard.writeText("{password}");
-        const btn = window.parent.document.querySelector('button:has-text("📋 Copy to Clipboard")');
-        if (btn) {{
-            btn.innerText = "✅ Copied!";
-            setTimeout(() => {{ btn.innerText = "📋 Copy to Clipboard"; }}, 2000);
-        }}
-        </script>
-        """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <script>
+    navigator.clipboard.writeText("{password}");
+    if (btn) {{
+        btn.innerText = "✅ Copied!";
+    }}
+    </script>
+    """, unsafe_allow_html=True)

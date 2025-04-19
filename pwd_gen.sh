@@ -1,1 +1,1 @@
-python pwd_gen.py
+python pwd_gen_tk_app.py

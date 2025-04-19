@@ -1,5 +1,5 @@
 import streamlit as st
-from pwd_gen import generate_password
+from generator import generate_password
 
 st.title("🔐 Password Generator")
 

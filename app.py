@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 from generator import generate_password
 
 st.title("🔐 Password Generator")
@@ -27,3 +28,15 @@ if st.button("Generate Password"):
         cursor: pointer;
     ">📋 Copy to Clipboard</button>
     """, unsafe_allow_html=True)
+
+    # Set the flag manually via hidden form
+    st.form(key="copied_form")
+    st.session_state["copied"] = True
+    st.experimental_rerun()
+
+# Show the "Copied!" message if the flag is set
+if st.session_state["copied"]:
+    st.success("✅ Copied!")
+    time.sleep(2)
+    st.session_state["copied"] = False
+    st.experimental_rerun()

@@ -1,5 +1,7 @@
 import random
 import string
+import warnings
+
 
 def check_good_pw(pw: str) -> bool:
     upper = any(char.isupper() for char in pw)
@@ -13,8 +15,8 @@ def generate_password(length: int, seed_seq: None) -> str:
         random.seed(seed_seq)
     # list_of_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_"
     list_of_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%&*()_"
-    selected_char = []
+    selected_char = random.sample(list_of_chars, length)
     while not check_good_pw(selected_char):
-        selected_char = random.sample(list_of_chars, length)
+        warnings.warn("change seed phrase for more secure password", UserWarning) 
     pass_str = "".join(selected_char)
     return pass_str

@@ -13,7 +13,7 @@ if st.button("Generate Password"):
     check_good, password = generate_password(length, seed)
     st.success(f"Generated password: `{password}`")
     if not check_good:
-        st.warning("⚠️ change seed phrase for more secure password")
+        st.warning("⚠️ change seed string or lenght for more secure password")
     st.code(password, language="text")
     # Copy button using custom JavaScript
 

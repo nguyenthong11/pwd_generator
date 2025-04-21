@@ -11,9 +11,9 @@ length = st.number_input("Desired password length", min_value=4, value=15)
 
 if st.button("Generate Password"):
     check_good, password = generate_password(length, seed)
-    st.success(f"Generated password: `{password}`")
     if not check_good:
         st.warning("⚠️ change seed string or lenght for more secure password")
+    st.success(f"Generated password: `{password}`")
     st.code(password, language="text")
     # Copy button using custom JavaScript
 

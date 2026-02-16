@@ -18,7 +18,7 @@ if st.button("Generate Password"):
     st.success("✅ Generated password: ")
 
     # Toggle to show/hide password
-    show_password = st.checkbox("Show password", value=True)
+    show_password = st.checkbox("Show password", value=False)
     st.code(password, language="text")
 
     # Separate copy button

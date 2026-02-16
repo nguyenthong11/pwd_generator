@@ -22,7 +22,7 @@ if st.button("Generate Password"):
 
     # Separate copy button
 if 'password' in st.session_state:
-    if st.button("📋 Copy to Clipboard"):\
+    if st.button("📋 Copy to Clipboard"):
         try:
             pyperclip.copy(st.session_state.password)
             st.success("Copied!")

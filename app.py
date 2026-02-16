@@ -1,5 +1,4 @@
 import streamlit as st
-import pyperclip
 from generator import generate_password
 
 st.set_page_config(page_title="Testing Password Generator", page_icon="🔐")
@@ -16,15 +15,17 @@ if st.button("Generate Password"):
         
     # Store in session state
     st.session_state.password = password
-    st.success(f"Generated password: ")
+    st.success("✅ Generated password: ")
+
+    # Toggle to show/hide password
+    show_password = st.checkbox("Show password", value=True)
     st.code(password, language="text")
-    # Copy button using custom JavaScript
 
     # Separate copy button
-if 'password' in st.session_state:
-    if st.button("📋 Copy to Clipboard"):
-        try:
-            pyperclip.copy(st.session_state.password)
-            st.success("Copied!")
-        except:
-            st.error("Copy failed - please copy manually")
+# if 'password' in st.session_state:
+#     if st.button("📋 Copy to Clipboard"):
+#         try:
+#             pyperclip.copy(st.session_state.password)
+#             st.success("Copied!")
+#         except:
+#             st.error("Copy failed - please copy manually")

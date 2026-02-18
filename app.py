@@ -5,8 +5,6 @@ st.set_page_config(page_title="Password Generator from Seed", page_icon="🔐")
 st.title("🔐 Password Generator")
 
 """
-# About app
-
 This app generates a robust password using the seed string.
 """
 

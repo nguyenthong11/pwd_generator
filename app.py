@@ -1,8 +1,14 @@
 import streamlit as st
 from generator import generate_password
 
-st.set_page_config(page_title="Testing Password Generator", page_icon="🔐")
+st.set_page_config(page_title="Password Generator from Seed", page_icon="🔐")
 st.title("🔐 Password Generator")
+
+"""
+# About app
+
+This app generates a robust password using the seed string.
+"""
 
 seed = st.text_input("Enter seed string:", type="password")  # Hide seed input
 length = st.number_input("Desired password length", min_value=4, max_value=128, value=15)

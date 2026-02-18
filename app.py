@@ -9,7 +9,7 @@ This app generates a robust password using the seed string.
 """
 
 seed = st.text_input("Enter seed string:", type="password")  # Hide seed input
-length = st.number_input("Desired password length", min_value=4, max_value=128, value=15)
+length = st.number_input("Desired password length", min_value=4, max_value=72, value=15)
 
 
 if st.button("Generate Password"):

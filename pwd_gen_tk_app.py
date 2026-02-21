@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from generator import generate_password
+from generator import PasswordGenerator
 # from faker import Faker
 
 
@@ -69,12 +69,13 @@ class GUI:
             if length < 4:
                 raise ValueError
         except ValueError:
-            messagebox.showwarning("Invalid input", "Password length must be a number at least 4. Using default length: 15.")
+            # messagebox.showwarning("Invalid input")
             length = 15
         # Faker.seed(int.from_bytes(get_string.encode('utf-8'), 'little'))
         # pwd = Faker().password(length)
-        _, pwd = generate_password(length, seed_seq=get_string) #comment this to get the faker algo
-        self.value.set(pwd)
+        pwd_gen = PasswordGenerator()
+        pwd_gen.generate_password(length, seed_seq=get_string) #comment this to get the faker algo
+        self.value.set(pwd_gen.pw)
 
     def clipper(self) -> None:
         self.main_window.clipboard_clear()

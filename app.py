@@ -1,5 +1,5 @@
 import streamlit as st
-from generator import generate_password
+from generator import PasswordGenerator
 
 st.set_page_config(page_title="Password Generator from Seed", page_icon="🔐")
 st.title("🔐 Password Generator")
@@ -13,21 +13,14 @@ length = st.number_input("Desired password length", min_value=4, max_value=72, v
 
 
 if st.button("Generate Password"):
-    check_good, password = generate_password(length, seed)
-    if not check_good:
+
+    pwd_gen = PasswordGenerator()
+    pwd_gen.generate_password(length, seed_seq=seed)
+    if not pwd_gen.check:
         st.warning("⚠️ change seed string or length for more secure password")
         
     # Store in session state
-    st.session_state.password = password
+    st.session_state.password = pwd_gen.pw
     st.success("✅ Generated password: ")
 
-    st.code(password, language="text")
-
-    # Separate copy button
-# if 'password' in st.session_state:
-#     if st.button("📋 Copy to Clipboard"):
-#         try:
-#             pyperclip.copy(st.session_state.password)
-#             st.success("Copied!")
-#         except:
-#             st.error("Copy failed - please copy manually")
+    st.code(pwd_gen.pw, language="text")

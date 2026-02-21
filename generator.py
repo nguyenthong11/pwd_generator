@@ -18,9 +18,7 @@ class PasswordGenerator:
         special = any(char in string.punctuation for char in self.pw)
         self.check = upper and lower and number and special
 
-    def generate_password(self, length: int, seed_seq = None) -> tuple[bool, str]:
-        self.length = length
-        self.seed_seq = seed_seq
+    def generate_password(self) -> tuple[bool, str]:
         if self.seed_seq:
             random.seed(self.seed_seq)
         selected_char = random.sample(list_of_chars, self.length)

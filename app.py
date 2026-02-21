@@ -14,8 +14,8 @@ length = st.number_input("Desired password length", min_value=4, max_value=72, v
 
 if st.button("Generate Password"):
 
-    pwd_gen = PasswordGenerator()
-    pwd_gen.generate_password(length, seed_seq=seed)
+    pwd_gen = PasswordGenerator(length=length, seed_seq=seed)
+    pwd_gen.generate_password()
     if not pwd_gen.check:
         st.warning("⚠️ change seed string or length for more secure password")
         

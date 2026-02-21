@@ -73,8 +73,8 @@ class GUI:
             length = 15
         # Faker.seed(int.from_bytes(get_string.encode('utf-8'), 'little'))
         # pwd = Faker().password(length)
-        pwd_gen = PasswordGenerator()
-        pwd_gen.generate_password(length, seed_seq=get_string) #comment this to get the faker algo
+        pwd_gen = PasswordGenerator(length=length, seed_seq=get_string)
+        pwd_gen.generate_password() #comment this to get the faker algo
         self.value.set(pwd_gen.pw)
 
     def clipper(self) -> None:

@@ -5,7 +5,8 @@ st.set_page_config(page_title="Password Generator from Seed", page_icon="🔐")
 st.title("🔐 Password Generator")
 
 """
-This app generates a robust password using the seed string.
+This app generates a robust password using the seed string. 
+The same seed will always produce the same password, so you can use it to regenerate your password if needed.
 """
 
 seed = st.text_input("Enter seed string:", type="password")  # Hide seed input

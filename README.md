@@ -1,6 +1,8 @@
 # Password Generator
 
-A deterministic password generator that creates consistent passwords from seed strings. Generate secure passwords across multiple interfaces: CLI, GUI, or web app.
+Deterministic Streamlit password generator from seed strings for local offline use.
+
+A lightweight Python app that generates repeatable passwords from a memorable seed, so you can recover credentials without storing them. Runs as a containerized Streamlit web app on port 8501.
 
 ## Features
 
@@ -27,6 +29,26 @@ pip install -r requirements.txt
 - Python 3.7+
 - streamlit (for web app)
 - tkinter (usually included with Python)
+
+## Docker
+
+Pull the published image:
+```bash
+docker pull qnguyen11/pwd-gen:latest
+docker run -p 8501:8501 qnguyen11/pwd-gen:latest 
+```
+
+Build the image locally:
+```bash
+docker build -t pwd-gen .
+```
+
+Run the container:
+```bash
+docker run -p 8501:8501 pwd-gen
+```
+
+Then open `http://localhost:8501` in your browser.
 
 ## Usage
 

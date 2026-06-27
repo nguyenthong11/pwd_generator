@@ -42,10 +42,18 @@ Build the image locally:
 ```bash
 docker build -t pwd-gen .
 ```
+or use docker compose:
+```bash
+docker compose build
+```
 
 Run the container:
 ```bash
 docker run -p 8501:8501 pwd-gen
+```
+or with docker compose:
+```bash
+docker compose up
 ```
 
 Then open `http://localhost:8501` in your browser.

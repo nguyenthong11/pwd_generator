@@ -2,7 +2,7 @@
 services:
   pwd-gen:
     build: .
-    image: pwd-generator:latest
+    image: pwd-gen:latest
     container_name: pwd-gen-app
     ports:
       - "8501:8501"

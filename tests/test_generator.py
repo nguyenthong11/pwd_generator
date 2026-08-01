@@ -1,4 +1,5 @@
 import pytest
+
 from generator import PasswordGenerator
 
 
@@ -106,25 +107,43 @@ class TestPasswordGenerator:
 class TestCLI:
     def test_cli_help(self):
         import subprocess
-        result = subprocess.run(["python", "cli.py", "--help"], capture_output=True, text=True)
+
+        result = subprocess.run(
+            ["python", "cli.py", "--help"], capture_output=True, text=True
+        )
         assert result.returncode == 0
         assert "seed" in result.stdout.lower()
 
     def test_cli_generate(self):
         import subprocess
-        result = subprocess.run(["python", "cli.py", "-s", "testseed", "-l", "15"], capture_output=True, text=True)
+
+        result = subprocess.run(
+            ["python", "cli.py", "-s", "testseed", "-l", "15"],
+            capture_output=True,
+            text=True,
+        )
         assert result.returncode == 0
         assert len(result.stdout.strip()) == 15
 
     def test_cli_generate_with_check(self):
         import subprocess
-        result = subprocess.run(["python", "cli.py", "-s", "testseed", "-l", "15", "-c"], capture_output=True, text=True)
+
+        result = subprocess.run(
+            ["python", "cli.py", "-s", "testseed", "-l", "15", "-c"],
+            capture_output=True,
+            text=True,
+        )
         assert result.returncode == 0
         assert len(result.stdout.strip()) == 15
         assert "Strength:" in result.stderr
 
     def test_cli_invalid_length(self):
         import subprocess
-        result = subprocess.run(["python", "cli.py", "-s", "test", "-l", "3"], capture_output=True, text=True)
+
+        result = subprocess.run(
+            ["python", "cli.py", "-s", "test", "-l", "3"],
+            capture_output=True,
+            text=True,
+        )
         assert result.returncode == 1
         assert "Error" in result.stderr

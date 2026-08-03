@@ -6,8 +6,7 @@ COPY requirements.txt .
 
 ENV PIP_ROOT_USER_ACTION=ignore
 
-RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+RUN uv pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY app.py .

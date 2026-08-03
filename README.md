@@ -22,11 +22,11 @@ cd pwd_gen
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 ### Requirements
-- Python 3.7+
+- Python 3.11+
 - streamlit (for web app)
 - tkinter (usually included with Python)
 
@@ -62,28 +62,28 @@ Then open `http://localhost:8501` in your browser.
 
 ### Web App (Streamlit)
 ```bash
-streamlit run app.py
+uv run streamlit run app.py
 ```
 Access at `http://localhost:8501` or use the hosted version at [pwdgenerator-nqt.streamlit.app](https://pwdgenerator-nqt.streamlit.app/)
 
 ### Command Line
 ```bash
 # Generate password with seed and default length (15)
-python cli.py -s "myseed"
+uv run cli.py -s "myseed"
 
 # Custom length
-python cli.py -s "myseed" -l 20
+uv run cli.py -s "myseed" -l 20
 
 # Show password strength
-python cli.py -s "myseed" -l 20 -c
+uv run cli.py -s "myseed" -l 20 -c
 
 # Full options
-python cli.py --help
+uv run cli.py --help
 ```
 
 ### GUI (Tkinter)
 ```bash
-python pwd_gen_tk_app.py
+uv run pwd_gen_tk_app.py
 ```
 - Enter seed string
 - Specify desired length (default: 15)
@@ -126,29 +126,31 @@ For cryptographic-grade passwords, use `secrets` module or a proper password man
 ├── cli.py                 # Command-line interface
 ├── pwd_gen_tk_app.py      # Tkinter GUI
 ├── requirements.txt       # Python dependencies
-└── README.md             # This file
+├── README.md             # This file
+├── pyproject.toml
+└── uv.lock
 ```
 
 ## Examples
 
 ### Example 1: Same seed, same password
 ```bash
-$ python cli.py -s "birthday123" -l 20
+$ uv run cli.py -s "birthday123" -l 20
 k^Af3uXm_zJ!4&QpRvBw
 
-$ python cli.py -s "birthday123" -l 20
+$ uv run cli.py -s "birthday123" -l 20
 k^Af3uXm_zJ!4&QpRvBw  # Identical
 ```
 
 ### Example 2: Different length
 ```bash
-$ python cli.py -s "birthday123" -l 10
+$ uv run cli.py -s "birthday123" -l 10
 k^Af3uXm_z
 ```
 
 ### Example 3: Check strength
 ```bash
-$ python cli.py -s "short" -l 8 -c
+$ uv run cli.py -s "short" -l 8 -c
 abc1!ABC
 Strength: ✓ Strong
 ```

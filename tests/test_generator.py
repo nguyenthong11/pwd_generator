@@ -1,7 +1,7 @@
 import pytest
 
 from generator import PasswordGenerator
-
+from cli import main
 
 class TestPasswordGenerator:
     def test_default_init(self):

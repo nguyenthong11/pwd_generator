@@ -121,12 +121,13 @@ For cryptographic-grade passwords, use `secrets` module or a proper password man
 
 ```
 .
+├── tests/                 # unit test
 ├── generator.py           # Core password generation logic
 ├── app.py                 # Streamlit web interface
 ├── cli.py                 # Command-line interface
 ├── pwd_gen_tk_app.py      # Tkinter GUI
 ├── requirements.txt       # Python dependencies
-├── README.md             # This file
+├── README.md              # This file
 ├── pyproject.toml
 └── uv.lock
 ```
@@ -136,23 +137,23 @@ For cryptographic-grade passwords, use `secrets` module or a proper password man
 ### Example 1: Same seed, same password
 ```bash
 $ uv run cli.py -s "birthday123" -l 20
-k^Af3uXm_zJ!4&QpRvBw
+Pd6umATb9@_Y!Elj4Uyc
 
 $ uv run cli.py -s "birthday123" -l 20
-k^Af3uXm_zJ!4&QpRvBw  # Identical
+Pd6umATb9@_Y!Elj4Uyc  # Identical
 ```
 
 ### Example 2: Different length
 ```bash
 $ uv run cli.py -s "birthday123" -l 10
-k^Af3uXm_z
+Pd6umATb9@
 ```
 
 ### Example 3: Check strength
 ```bash
 $ uv run cli.py -s "short" -l 8 -c
-abc1!ABC
-Strength: ✓ Strong
+FgcyJC@H
+Strength: ✗ Weak
 ```
 
 ## License

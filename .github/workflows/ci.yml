@@ -26,6 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install uv
           uv sync
           uv pip install pytest-cov
 

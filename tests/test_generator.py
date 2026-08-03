@@ -103,22 +103,21 @@ class TestPasswordGenerator:
         assert has_digit
         assert has_special
 
+import subprocess
 
 class TestCLI:
     def test_cli_help(self):
-        import subprocess
-
         result = subprocess.run(
-            ["python", "cli.py", "--help"], capture_output=True, text=True
-        )
+                ["uv", "run", "cli.py", "--help"],
+                capture_output=True,
+                text=True,
+            )
         assert result.returncode == 0
         assert "seed" in result.stdout.lower()
 
     def test_cli_generate(self):
-        import subprocess
-
         result = subprocess.run(
-            ["python", "cli.py", "-s", "testseed", "-l", "15"],
+            ["uv", "run", "cli.py", "-s", "testseed", "-l", "15"],
             capture_output=True,
             text=True,
         )
@@ -129,7 +128,7 @@ class TestCLI:
         import subprocess
 
         result = subprocess.run(
-            ["python", "cli.py", "-s", "testseed", "-l", "15", "-c"],
+            ["uv", "run", "cli.py", "-s", "testseed", "-l", "15", "-c"],
             capture_output=True,
             text=True,
         )
@@ -141,7 +140,7 @@ class TestCLI:
         import subprocess
 
         result = subprocess.run(
-            ["python", "cli.py", "-s", "test", "-l", "3"],
+            ["uv", "run", "cli.py", "-s", "test", "-l", "3"],
             capture_output=True,
             text=True,
         )

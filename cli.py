@@ -10,9 +10,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python cli.py -s "myseed" -l 20
-  python cli.py --seed "myseed" --length 20
-  python cli.py -s "myseed"  # Uses default length of 15
+  uv run cli.py -s "myseed" -l 20
+  uv run cli.py --seed "myseed" --length 20
+  uv run cli.py -s "myseed"  # Uses default length of 15
         """,
     )
 

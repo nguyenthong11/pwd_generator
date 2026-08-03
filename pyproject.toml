@@ -3,6 +3,5 @@ name = "pwd-generator"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
-    "pytest>=9.1.1",
     "streamlit>=1.60.0",
 ]
